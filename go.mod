@@ -59,7 +59,7 @@ require (
 	github.com/scylladb/go-reflectx v1.0.1
 	github.com/shirou/gopsutil/v3 v3.22.12
 	github.com/shopspring/decimal v1.3.1
-	github.com/smartcontractkit/chainlink-cosmos v0.1.4-0.20230320152049-e4098cfa14f5
+	github.com/smartcontractkit/chainlink-cosmos v0.1.6
 	github.com/smartcontractkit/chainlink-relay v0.1.7-0.20230316183824-9f1e5e11e2b7
 	github.com/smartcontractkit/chainlink-solana v1.0.3-0.20230320130046-4d37840c6c1b
 	github.com/smartcontractkit/chainlink-starknet/relayer v0.0.0-20230318133606-b0d74b9b5e2c
@@ -80,7 +80,7 @@ require (
 	github.com/urfave/cli v1.22.12
 	go.dedis.ch/fixbuf v1.0.3
 	go.dedis.ch/kyber/v3 v3.0.14
-	go.uber.org/multierr v1.10.0
+	go.uber.org/multierr v1.11.0
 	go.uber.org/zap v1.24.0
 	golang.org/x/crypto v0.7.0
 	golang.org/x/exp v0.0.0-20230224173230-c95f2b4c22f2
