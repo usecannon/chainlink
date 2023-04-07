@@ -1,0 +1,9 @@
+name = "chainlink-token"
+version = "1.0.0"
+
+[setting.recipient]
+defaultValue = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+
+[contract.Token]
+artifact = "LinkToken"
+from = "<%= settings.recipient %>"

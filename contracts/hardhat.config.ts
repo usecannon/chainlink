@@ -7,6 +7,8 @@ import 'hardhat-abi-exporter'
 import 'hardhat-contract-sizer'
 import 'solidity-coverage'
 
+import 'hardhat-cannon'
+
 const COMPILER_SETTINGS = {
   optimizer: {
     enabled: true,

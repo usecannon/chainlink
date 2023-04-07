@@ -1,0 +1,67 @@
+name = "chainlink-aggregator"
+version = "1.0.0"
+
+[setting.owner]
+defaultValue = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+
+[setting.maximumGasPrice]
+defaultValue = '1000000000'
+
+[setting.reasonableGasPrice]
+defaultValue = '10000000'
+
+[setting.microLinkPerEth]
+defaultValue = '10000'
+
+[setting.linkGweiPerObservation]
+defaultValue = '1'
+
+[setting.linkGweiPerTransmission]
+defaultValue = '1'
+
+[setting.minAnswer]
+defaultValue = '0'
+
+[setting.maxAnswer]
+defaultValue = '100000000000000000000'
+
+[setting.accessController]
+defaultValue = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
+
+[setting.decimals]
+defaultValue = '8'
+
+[setting.description]
+#defaultValue = 'Aggregator'
+
+[import.linkToken]
+source = "chainlink-token:1.0.0"
+
+[contract.AggregatorImpl]
+artifact = "OffchainAggregator"
+args = [
+    "<%= settings.maximumGasPrice %>", # uint32 _maximumGasPrice,
+    "<%= settings.reasonableGasPrice %>", #uint32 _reasonableGasPrice,
+    "<%= settings.microLinkPerEth %>", # uint32 _microLinkPerEth,
+    "<%= settings.linkGweiPerObservation %>", # uint32 _linkGweiPerObservation,
+    "<%= settings.linkGweiPerTransmission %>", # uint32 _linkGweiPerTransmission,
+    "<%= imports.linkToken.contracts.Token.address %>", # address _link,
+    "<%= settings.minAnswer %>", # int192 _minAnswer,
+    "<%= settings.maxAnswer %>", # int192 _maxAnswer,
+    "<%= settings.accessController %>", # AccessControllerInterface _billingAccessController,
+    "<%= settings.accessController %>", # AccessControllerInterface _requesterAccessController,
+    "<%= settings.decimals %>", # uint8 _decimals,
+    "<%= settings.description %>", # string memory description
+]
+
+depends = ["import.linkToken"]
+
+[contract.Proxy]
+artifact = "EACAggregatorProxy"
+from = "<%= settings.owner %>"
+args = [
+    "<%= contracts.AggregatorImpl.address %>", # address _aggregator,
+    "<%= settings.accessController %>", # address _accessController
+]
+
+depends = ["contract.AggregatorImpl"]

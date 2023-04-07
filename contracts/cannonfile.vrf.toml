@@ -1,0 +1,30 @@
+name = "chainlink-vrf"
+version = "2.0.0"
+
+[import.linkAggregator]
+source = "chainlink-aggregator:1.0.0"
+preset = "LINKUSD"
+
+[contract.BlockhashStore]
+artifact = "src/v0.6/dev/BlockhashStore.sol:BlockhashStore"
+
+[contract.VRFCoordinator]
+artifact = "src/v0.8/VRFCoordinatorV2.sol:VRFCoordinatorV2"
+args = [
+    "<%= imports.linkAggregator.imports.linkToken.contracts.Token.address %>", # address link,
+    "<%= contracts.BlockhashStore.address %>", # address blockhashStore,
+    "<%= imports.linkAggregator.contracts.Proxy.address %>", # address linkEthFeed
+]
+
+depends = ["contract.BlockhashStore", "import.linkAggregator"]
+
+[contract.VRFWrapper]
+artifact = "VRFV2Wrapper"
+
+args = [
+    "<%= imports.linkAggregator.imports.linkToken.contracts.Token.address %>", # address link,
+    "<%= imports.linkAggregator.contracts.Proxy.address %>", # address linkEthFeed
+    "<%= contracts.VRFCoordinator.address %>", # address coordinator,
+]
+
+depends = ["contract.VRFCoordinator"]
