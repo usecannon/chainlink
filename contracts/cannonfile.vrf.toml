@@ -3,7 +3,7 @@ version = "2.0.0"
 
 [import.linkAggregator]
 source = "chainlink-aggregator:1.0.0"
-preset = "LINKUSD"
+preset = "linkusd"
 
 [contract.BlockhashStore]
 artifact = "src/v0.6/dev/BlockhashStore.sol:BlockhashStore"
